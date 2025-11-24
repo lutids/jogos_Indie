@@ -219,7 +219,8 @@
     </div>
 
     <script>
- const JSON_URL = 'https://raw.githubusercontent.com/lutids/jogos_Indie/refs/heads/main/dados_livres.json';
+        // COLE AQUI A URL "RAW" DO SEU ARQUIVO dados_livres.json DO GITHUB
+        const JSON_URL = 'https://raw.githubusercontent.com/lutids/jogos_Indie/refs/heads/main/dados_livres.json';
 
         async function carregarDados() {
             const conteudo = document.getElementById('conteudo');
@@ -233,10 +234,10 @@
                 
                 const dados = await response.json();
                 
-                
+                // Limpar conteúdo
                 conteudo.innerHTML = '';
                 
-                
+                // Exibir estatísticas
                 if (dados.estatisticas) {
                     const estatisticasHTML = `
                         <div class="estatisticas">
@@ -257,7 +258,7 @@
                     conteudo.innerHTML += estatisticasHTML;
                 }
                 
-                
+                // Criar grid de jogos
                 const jogosGrid = document.createElement('div');
                 jogosGrid.className = 'jogos-grid';
                 
@@ -303,9 +304,9 @@
             }
         }
 
-        
+        // Carregar dados quando a página abrir
         window.addEventListener('DOMContentLoaded', carregarDados);
     </script>
 </body>
-
 </html>
+

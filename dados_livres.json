@@ -1,0 +1,77 @@
+{
+  "tema": "Jogos Indie Brasileiros",
+  "descricao": "Uma coleção de jogos independentes desenvolvidos por estúdios brasileiros",
+  "jogos": [
+    {
+      "id": 1,
+      "titulo": "Celeste",
+      "estudio": "Extremely OK Games (co-criador brasileiro)",
+      "ano": 2018,
+      "genero": "Plataforma",
+      "descricao": "Um desafiador jogo de plataforma sobre escalar uma montanha, explorando temas de saúde mental e superação pessoal.",
+      "plataformas": ["PC", "Nintendo Switch", "PlayStation", "Xbox"],
+      "nota": 9.5,
+      "destaque": "Vencedor de múltiplos prêmios incluindo melhor jogo indie"
+    },
+    {
+      "id": 2,
+      "titulo": "Chroma Squad",
+      "estudio": "Behold Studios",
+      "ano": 2015,
+      "genero": "RPG Tático",
+      "descricao": "Um RPG tático inspirado nos programas de super sentai japoneses, onde você gerencia um estúdio de TV.",
+      "plataformas": ["PC", "PlayStation", "Xbox", "Mobile"],
+      "nota": 8.2,
+      "destaque": "Financiado por crowdfunding com sucesso"
+    },
+    {
+      "id": 3,
+      "titulo": "Dodge Club Party",
+      "estudio": "Space Mace",
+      "ano": 2017,
+      "genero": "Party Game",
+      "descricao": "Um frenético jogo de festa multiplayer local onde o objetivo é desviar de projéteis em arenas caóticas.",
+      "plataformas": ["PC", "Nintendo Switch"],
+      "nota": 7.8,
+      "destaque": "Ideal para festas com até 4 jogadores"
+    },
+    {
+      "id": 4,
+      "titulo": "Blazing Chrome",
+      "estudio": "JoyMasher",
+      "ano": 2019,
+      "genero": "Run and Gun",
+      "descricao": "Um run and gun no estilo retrô inspirado em clássicos como Contra e Metal Slug.",
+      "plataformas": ["PC", "Nintendo Switch", "PlayStation", "Xbox"],
+      "nota": 8.5,
+      "destaque": "Nostalgia dos arcades dos anos 90"
+    },
+    {
+      "id": 5,
+      "titulo": "Relic Hunters Zero",
+      "estudio": "Rogue Snail",
+      "ano": 2015,
+      "genero": "Shooter",
+      "descricao": "Um shooter cooperativo colorido e divertido com elementos de RPG e toneladas de armas.",
+      "plataformas": ["PC"],
+      "nota": 8.0,
+      "destaque": "Gratuito e com milhões de downloads"
+    },
+    {
+      "id": 6,
+      "titulo": "Dandara",
+      "estudio": "Long Hat House",
+      "ano": 2018,
+      "genero": "Metroidvania",
+      "descricao": "Um metroidvania único com mecânicas de movimentação inovadoras, inspirado na história brasileira.",
+      "plataformas": ["PC", "Nintendo Switch", "PlayStation", "Xbox", "Mobile"],
+      "nota": 8.7,
+      "destaque": "Protagonista inspirada em Dandara dos Palmares"
+    }
+  ],
+  "estatisticas": {
+    "total_jogos": 6,
+    "nota_media": 8.45,
+    "periodo": "2015-2019"
+  }
+}

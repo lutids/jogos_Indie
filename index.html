@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos Indie Brasileiros</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .descricao {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            padding: 40px;
+        }
+
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .estatisticas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .jogos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .jogo-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .jogo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .jogo-header {
+            margin-bottom: 15px;
+        }
+
+        .jogo-titulo {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .jogo-estudio {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .jogo-ano {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .jogo-genero {
+            display: inline-block;
+            background: #764ba2;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .jogo-descricao {
+            color: #555;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .jogo-nota {
+            display: inline-flex;
+            align-items: center;
+            background: #f39c12;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .jogo-nota::before {
+            content: "⭐ ";
+            margin-right: 5px;
+        }
+
+        .jogo-plataformas {
+            margin: 15px 0;
+        }
+
+        .plataforma-tag {
+            display: inline-block;
+            background: #ecf0f1;
+            color: #34495e;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            margin: 3px;
+        }
+
+        .jogo-destaque {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #2e7d32;
+        }
+
+        .jogo-destaque::before {
+            content: "🏆 ";
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .jogos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Jogos Indie Brasileiros</h1>
+            <p class="descricao">Descubra a criatividade dos desenvolvedores brasileiros</p>
+        </header>
+
+        <div id="conteudo">
+            <div class="loading">Carregando dados...</div>
+        </div>
+    </div>
+
+    <script>
+        // COLE AQUI A URL "RAW" DO SEU ARQUIVO dados_livres.json DO GITHUB
+        const JSON_URL = 'SUA_URL_RAW_AQUI';
+
+        async function carregarDados() {
+            const conteudo = document.getElementById('conteudo');
+            
+            try {
+                const response = await fetch(JSON_URL);
+                
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar os dados');
+                }
+                
+                const dados = await response.json();
+                
+                // Limpar conteúdo
+                conteudo.innerHTML = '';
+                
+                // Exibir estatísticas
+                if (dados.estatisticas) {
+                    const estatisticasHTML = `
+                        <div class="estatisticas">
+                            <div class="stat-card">
+                                <div class="stat-value">${dados.estatisticas.total_jogos}</div>
+                                <div class="stat-label">Total de Jogos</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${dados.estatisticas.nota_media}</div>
+                                <div class="stat-label">Nota Média</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${dados.estatisticas.periodo}</div>
+                                <div class="stat-label">Período</div>
+                            </div>
+                        </div>
+                    `;
+                    conteudo.innerHTML += estatisticasHTML;
+                }
+                
+                // Criar grid de jogos
+                const jogosGrid = document.createElement('div');
+                jogosGrid.className = 'jogos-grid';
+                
+                dados.jogos.forEach(jogo => {
+                    const jogoCard = document.createElement('div');
+                    jogoCard.className = 'jogo-card';
+                    
+                    const plataformasHTML = jogo.plataformas
+                        .map(p => `<span class="plataforma-tag">${p}</span>`)
+                        .join('');
+                    
+                    jogoCard.innerHTML = `
+                        <div class="jogo-header">
+                            <h2 class="jogo-titulo">${jogo.titulo}</h2>
+                            <p class="jogo-estudio">${jogo.estudio}</p>
+                            <div>
+                                <span class="jogo-ano">${jogo.ano}</span>
+                                <span class="jogo-genero">${jogo.genero}</span>
+                            </div>
+                        </div>
+                        <p class="jogo-descricao">${jogo.descricao}</p>
+                        <div class="jogo-nota">${jogo.nota}</div>
+                        <div class="jogo-plataformas">
+                            ${plataformasHTML}
+                        </div>
+                        <div class="jogo-destaque">${jogo.destaque}</div>
+                    `;
+                    
+                    jogosGrid.appendChild(jogoCard);
+                });
+                
+                conteudo.appendChild(jogosGrid);
+                
+            } catch (erro) {
+                conteudo.innerHTML = `
+                    <div class="error">
+                        <h2>Erro ao carregar dados</h2>
+                        <p>${erro.message}</p>
+                        <p>Verifique se você configurou corretamente a URL do JSON na variável JSON_URL.</p>
+                    </div>
+                `;
+                console.error('Erro:', erro);
+            }
+        }
+
+        // Carregar dados quando a página abrir
+        window.addEventListener('DOMContentLoaded', carregarDados);
+    </script>
+</body>
+</html>
